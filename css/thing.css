@@ -1,0 +1,46 @@
+.section {
+	float: left;
+	width: 50%;
+}
+
+#rules-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 0 2em;
+}
+
+.rule {
+    margin-bottom: 2em;
+}
+
+.rule .definition {
+	width: 50em;
+	font-family: monospace;
+}
+
+.times ol {
+    width: 50em;
+    overflow-x: scroll;
+	list-style-type: none;
+    height: 2.8em;
+	white-space: nowrap;
+	margin: 0;
+	padding: 0;
+}
+
+.times .time {
+	display: inline-block;
+}
+.times .time button {
+    background-color: #eee;
+    margin: 0;
+    padding: 2px 5px;
+	border: none;
+}
+.times .time:not(:last-child) {
+	margin-right: 0.6em;
+}
+
+#time #show-hours {
+	text-align: right;
+}

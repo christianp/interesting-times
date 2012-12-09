@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Interesting Times</title>
+
+		<!-- jquery -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+		<!-- openkeyval -->
+		<script src="http://cdn.openkeyval.org/statics/openkeyval.packed.js"></script>
+
+		<!-- knockout -->
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.0.0/knockout-min.js"></script>
+
+		<!-- normalise.css -->
+		<link rel="stylesheet" href="http://css.cdn.tl/normalize.css"></link>
+
+		<script type="text/javascript" src="js/thing.js"></script>
+		<link rel="stylesheet" href="css/thing.css"></link>
+	</head>
+	<body>
+		<h1>Interesting times</h1>
+		<p>I have a malady. I keep noticing interesting times. I think a way to cure myself might be to convince myself that every time is interesting.</p>
+		<div id="rules" class="section">
+			<h2>Rules</h2>
+			<ul id="rules-list" data-bind="foreach: rules">
+				<li class="rule">
+					<label>Name</label>
+					<input class="name" type="text" data-bind="value: name, valueUpdate: 'afterkeydown'"/>
+
+					<label>Definition</label>
+					<textarea class="definition" data-bind="value: definition"></textarea>
+
+					<span data-bind="if: ok">OK!</span>
+
+					<button data-bind="click: $parent.removeRule">Remove</button>
+					<div class="times">
+						<span data-bind="text: times().length"></span> matching times: 
+						<ol data-bind="foreach: times">
+							<li class="time"><button data-bind="text:display, click: $root.setTime"></buton></li>
+						</ol>
+					</div>
+				</li>
+			</ul>
+			<button data-bind="click: addRule">Add a rule</button>
+		</div>
+		<div id="time" class="section">
+			<h2>Time
+			<input id="show-hours" type="number" min="0" max="23" data-bind="value: showHours"/>:<input id="show-minutes" type="number" min="0" max="59" data-bind="value: showMinutes"/>
+			</h2>
+			
+			<div data-bind="with: showTime">
+				<div class="uninteresting" data-bind="if: rules().length==0">
+					Uninteresting!
+				</div>
+				<ul data-bind="foreach: rules">
+					<li><span data-bind="text: name"></span></li>
+				</ul>
+			</div>
+
+			<h2><span data-bind="text: uninterestingTimes().length"></span> uninteresting times (<span data-bind="text:Math.round(uninterestingTimes().length/14.4)"></span>%)</h2>
+			<div class="times">
+				<ol data-bind="foreach: uninterestingTimes">
+					<li class="time"><button data-bind="text:display, click: $root.setTime"></buton></li>
+				</ol>
+			</div>
+		</div>
+	</body>
+</html>
